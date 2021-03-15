@@ -1,0 +1,43 @@
+﻿body {
+}
+a, a:hover {
+    text-decoration: none;
+    color: gray;
+    cursor: pointer;
+}
+@media (max-width:768px){
+    //for mobile phones
+    .hide_for_mobile {
+        display:none;
+    }
+}
+@media (min-width:768px){
+    .hide_for_dektop {
+        display:none;
+    }
+}
+
+.header {
+    padding: 5px;
+    display: flex;
+    justify-content: space-between;
+    &__logo > img{
+        height:50px;
+        width:50px;
+    }
+    &__link {
+        margin: 5px 15px;
+    }
+
+    &__hamburger > span {
+        cursor: pointer;
+        width: 35px;
+        height: 2px;
+        background-color: gray;
+        display: block;
+
+        &:not(:last-child) {
+            margin-bottom: 5px;
+        }
+    }
+}

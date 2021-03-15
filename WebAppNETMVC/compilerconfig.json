@@ -1,0 +1,14 @@
+﻿[
+  {
+    "outputFile": "Content/_MainLayout/SCSS/_header.css",
+    "inputFile": "Content/_MainLayout/SCSS/_header.scss"
+  },
+  {
+    "outputFile": "Content/Customer/SCSS/_footer.css",
+    "inputFile": "Content/Customer/SCSS/_footer.scss"
+  },
+  {
+    "outputFile": "Content/Globals/SCSS/_globals.css",
+    "inputFile": "Content/Globals/SCSS/_globals.scss"
+  }
+]

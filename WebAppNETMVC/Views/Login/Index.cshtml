@@ -1,0 +1,48 @@
+﻿@model WebAppNETMVC.DTO.LoginBORequest
+
+@{
+    ViewBag.Title = "Login";
+}
+<div class="row">
+    <div class="col-md-2"></div>
+    <div class="col-md-8">
+        <div class="panel panel-info">
+            <div class="panel-heading">
+                <div class="panel-title"><h2>Login</h2></div>
+            </div>
+            <div class="panel-body">
+                @using (Html.BeginForm())
+                {
+                    <hr />
+                    if (ViewBag.error != null)
+                    {
+                        <div class="alert alert-danger">
+                            @ViewBag.error
+                        </div>
+                    }
+                    <div class="form-group">
+
+                        @Html.TextBoxFor(model => model.Username, new { @class = "form-control", @placeholder = "Username" })
+
+                        @Html.ValidationMessageFor(model => model.Username, "", new { @class = "text-danger" })
+
+                    </div>
+                    <div class="form-group">
+
+                        @Html.TextBoxFor(model => model.Password, new { @class = "form-control", @placeholder = "password" })
+
+                        @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="form-group">
+                        <input type="submit" class="btn btn-primary" value="Login" />
+                    </div>
+
+                }
+                @Html.ActionLink("Not a user? Sign up","SignUp")
+            </div>
+        </div>
+    </div>
+    <div class="col-md-2"></div>
+</div>
+
+

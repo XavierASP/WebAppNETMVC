@@ -1,0 +1,45 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title | XavierCorp</title>
+    <link rel="icon" href="~/Content/Images/xavier_1.png" type="image/x-icon" />
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+    @Styles.Render("~/Content/font-awesome.css")
+    @Styles.Render("~/Content/_MainLayout/CSS/_header.css")
+    @if (IsSectionDefined("CustomerStyles"))
+    {
+        @RenderSection("CustomerStyles", required: false)
+    }
+
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <a class="header__logo">
+                <img src="~/Content/Images/logo_x.svg" />
+            </a>
+            <div class="header__menu hide_for_mobile">
+                <a class="header__link">Dashboard</a>
+                <a class="header__link">Staff</a>
+                <a class="header__link">About Us</a>
+                <a class="header__link">Contact Us</a>
+            </div>
+
+
+            <a class="header__hamburger hide_for_desktop">
+                <span></span>
+                <span></span>
+                <span></span>
+            </a>
+        </div>
+        <div>
+            @RenderBody()
+        </div>
+    </div>
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+</body>
+</html>
