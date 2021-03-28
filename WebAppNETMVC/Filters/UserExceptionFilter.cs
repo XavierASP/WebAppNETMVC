@@ -6,11 +6,15 @@ using System.Web.Mvc;
 
 namespace WebAppNETMVC.Filters
 {
-    public class UserExceptionFilter : IExceptionFilter
+    public class UserExceptionFilter : FilterAttribute,IExceptionFilter
     {
         public void OnException(ExceptionContext filterContext)
         {
-            throw new NotImplementedException();
+            if (!filterContext.ExceptionHandled)
+            {
+                throw new NotImplementedException();
+            }
+            
         }
     }
 }

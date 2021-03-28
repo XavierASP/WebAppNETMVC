@@ -1,14 +1,22 @@
 ﻿[
   {
-    "outputFile": "Content/_MainLayout/SCSS/_header.css",
+    "outputFile": "Content/_MainLayout/CSS/_header.css",
     "inputFile": "Content/_MainLayout/SCSS/_header.scss"
   },
   {
-    "outputFile": "Content/Customer/SCSS/_footer.css",
+    "outputFile": "Content/Customer/CSS/_footer.css",
     "inputFile": "Content/Customer/SCSS/_footer.scss"
   },
   {
-    "outputFile": "Content/Globals/SCSS/_globals.css",
+    "outputFile": "Content/Globals/CSS/_globals.css",
     "inputFile": "Content/Globals/SCSS/_globals.scss"
+  },
+  {
+    "outputFile": "Content/Customer/CSS/_main.css",
+    "inputFile": "Content/Customer/SCSS/_main.scss"
+  },
+  {
+    "outputFile": "Content/Login/CSS/login.css",
+    "inputFile": "Content/Login/SCSS/login.scss"
   }
 ]

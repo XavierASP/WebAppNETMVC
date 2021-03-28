@@ -1,0 +1,33 @@
+﻿<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="170" height="183" viewBox="0 0 170 183">
+  <defs>
+    <linearGradient id="linear-gradient" x1="0.5" x2="0.5" y2="1" gradientUnits="objectBoundingBox">
+      <stop offset="0" stop-color="#2bd9a5"/>
+      <stop offset="0.572" stop-color="#1ba77d"/>
+      <stop offset="1" stop-color="#166d53"/>
+    </linearGradient>
+  </defs>
+  <g id="Ellipse_1" data-name="Ellipse 1" transform="translate(33)" stroke="#2bd9a5" stroke-width="1" fill="url(#linear-gradient)">
+    <ellipse cx="30.5" cy="31.5" rx="30.5" ry="31.5" stroke="none"/>
+    <ellipse cx="30.5" cy="31.5" rx="30" ry="31" fill="none"/>
+  </g>
+  <g id="Ellipse_2" data-name="Ellipse 2" transform="translate(86 14)" stroke="#2bd9a5" stroke-width="1" fill="url(#linear-gradient)">
+    <ellipse cx="30.5" cy="29.5" rx="30.5" ry="29.5" stroke="none"/>
+    <ellipse cx="30.5" cy="29.5" rx="30" ry="29" fill="none"/>
+  </g>
+  <g id="Ellipse_3" data-name="Ellipse 3" transform="translate(2 63)" stroke="#2bd9a5" stroke-width="1" fill="url(#linear-gradient)">
+    <ellipse cx="55.5" cy="58" rx="55.5" ry="58" stroke="none"/>
+    <ellipse cx="55.5" cy="58" rx="55" ry="57.5" fill="none"/>
+  </g>
+  <g id="Group_1" data-name="Group 1" transform="translate(0 64)">
+    <g id="Ellipse_4" data-name="Ellipse 4" stroke="#2bd9a5" stroke-width="1" fill="url(#linear-gradient)">
+      <ellipse cx="55.5" cy="58" rx="55.5" ry="58" stroke="none"/>
+      <ellipse cx="55.5" cy="58" rx="55" ry="57.5" fill="none"/>
+    </g>
+  </g>
+  <g id="Group_2" data-name="Group 2" transform="translate(60 71)">
+    <g id="Ellipse_5" data-name="Ellipse 5" transform="translate(5 -1)" stroke="#2bd9a5" stroke-width="1" fill="url(#linear-gradient)">
+      <ellipse cx="52.5" cy="56.5" rx="52.5" ry="56.5" stroke="none"/>
+      <ellipse cx="52.5" cy="56.5" rx="52" ry="56" fill="none"/>
+    </g>
+  </g>
+</svg>

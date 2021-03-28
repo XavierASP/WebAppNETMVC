@@ -14,6 +14,12 @@ namespace WebAppNETMVC.AutoMapperConfig
             CreateMap<customer, CustomerBOResponse>();
             CreateMap<customer, CustomerBOResponseWithPaging>();
             CreateMap<CustomerBORequest, customer>();
+            //CreateMap<UserBORequest, user>();
+            //CreateMap<user, UserBOResponse>();
+            CreateMap<UserBORequest, uspValidateUser_Result>();
+            CreateMap<uspValidateUser_Result, UserBOResponse>();
+
+            CreateMap<LoginBORequest, uspValidateUser_Result>();
         }
     }
 }

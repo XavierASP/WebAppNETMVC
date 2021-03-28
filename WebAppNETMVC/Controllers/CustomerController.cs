@@ -1,17 +1,15 @@
 ﻿using AutoMapper;
 using System;
-using System.Collections.Generic;
-using System.Dynamic;
-using System.Linq;
-using System.Net;
-using System.Web;
 using System.Web.Mvc;
+using System.Web.Security;
 using WebAppNETMVC.DTO;
+using WebAppNETMVC.Filters;
 using WebAppNETMVC.IService;
-using WebAppNETMVC.Repository;
 
 namespace WebAppNETMVC.Controllers
 {
+    [UserExceptionFilter]
+    //[HandleError(View ="Error", ExceptionType = typeof(NotImplementedException))]
     public class CustomerController : Controller
     {
         private readonly ICustomerService _customerService;
@@ -34,14 +32,27 @@ namespace WebAppNETMVC.Controllers
         {
             return View();
         }
+        
+        [Authorize]
+        public void LogOut() 
+        {
+            FormsAuthentication.SignOut();
+            FormsAuthentication.RedirectToLoginPage();
+        }
 
         [Authorize]
-        public ActionResult Add(CustomerBORequest customerBORequest)
+        public ActionResult Add([Bind(Exclude = "customer_id")] CustomerBORequest customerBORequest)
         {
             if (ModelState.IsValid)
             {
                 var customer = _customerService.Add(customerBORequest);
-                ViewBag.Message = "Added Successfully.";
+
+                //!Key-Information
+                //!Commenting because viewbag is used to transfer data from action methods to view only, it can used to transfer data from one action methods to another.
+                //!The scope of ViewBag is permitted to the current request and the value of ViewBag will become null while redirecting.
+                //Todo: Need to change to TempData
+                //x ViewBag.Message = "Added Successfully.";
+                TempData["Message"] = "Added Successfully.";
                 return RedirectToAction("Index");
             }
             else
@@ -74,7 +85,7 @@ namespace WebAppNETMVC.Controllers
             if (ModelState.IsValid)
             {
                 var customer = _customerService.Update(customerBORequest);
-                ViewBag.Message = "Updated Successfully.";
+                TempData["Message"] = "Updated Successfully.";
                 return RedirectToAction("Index");
             }
             else
@@ -103,7 +114,7 @@ namespace WebAppNETMVC.Controllers
         public ActionResult Delete(CustomerBORequest customerBORequest)
         {
             _customerService.Delete(customerBORequest.customer_id);
-            ViewBag.Message = "Deleted Successfully.";
+            TempData["Message"] = "Deleted Successfully.";
             return RedirectToAction("Index");
         }
         /// <summary>
@@ -117,7 +128,7 @@ namespace WebAppNETMVC.Controllers
         /// <returns></returns>
         // GET: Customer
         [Authorize]
-        public ActionResult Index(int pageIndex = 0, int pageSize = 10, string orderByField = "", string orderBy = "")
+        public ActionResult Index(int pageIndex = 0, int pageSize = 10, string orderByField = "", string orderBy = "", bool isPartial = false)
         {
             //When user clicks on the table header, need to sort the data
             if (!string.IsNullOrEmpty(orderBy) && orderBy == "ASC")
@@ -145,8 +156,20 @@ namespace WebAppNETMVC.Controllers
 
             ViewData["Customers"] = customers;
             ViewData["User"] = user;
-
-            return View();
+            ViewBag.TotalCount = customers.TotalCount;
+            ViewBag.PageIndex = customers.PageIndex;
+            ViewBag.PageSize = customers.PageSize;
+            //isPartial? return PartialView("_Customer",customers):return View();
+            if (isPartial)
+            {
+                return PartialView("_Customer");
+            }
+            
+            else 
+            {
+                return View();
+            }
+            
             //return PartialView("_Customers");
 
         }

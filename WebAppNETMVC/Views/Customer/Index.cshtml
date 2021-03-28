@@ -6,118 +6,121 @@
 
 @section CustomerStyles{
     @Styles.Render("~/Content/Customer/CSS/_footer.css")
+    @Styles.Render("~/Content/Customer/CSS/_main.css")
 }
 @{
     var lsCustomers = ViewData["Customers"] as CustomerBOResponseWithPaging;
     var customers = lsCustomers.Customers;
     var user = ViewData["User"] as LoginBOResponse;
 }
-@if (ViewBag.Message != null)
+@if ( TempData["Message"] != null)
 {
-    <div class="alert alert-success">
-        ViewBag.Message
-    </div>
+<div class="alert alert-success">
+    @Convert.ToString(TempData["Message"])
+</div>
 }
 <div class="panel panel-info">
     <div class="panel-heading">
         <div class="panel-title"><h2>Customers</h2></div>
     </div>
-    <div class="panel-body">
-        <table class="table table-striped">
-            <tr>
-                <th>
-                    @Ajax.ActionLink("First Name",
-                    "Index",
-                    new { orderByField = "FIRSTNAME", orderBy = ViewBag.OrderBy },
-                    new AjaxOptions
-                    {
-                        HttpMethod = "GET",
-                        UpdateTargetId = "CustomerList",
-                        InsertionMode = InsertionMode.Replace
-                    })
-                    @*@Html.ActionLink("First Name", "Index", new { orderByField = "FIRSTNAME", orderBy = ViewBag.OrderBy })*@
-                </th>
-                <th>
-                    @Ajax.ActionLink("Last Name",
-                    "Index",
-                    new { orderByField = "LASTNAME", orderBy = ViewBag.OrderBy },
-                    new AjaxOptions
-                    {
-                        HttpMethod = "GET",
-                        UpdateTargetId = "CustomerList",
-                        InsertionMode = InsertionMode.Replace
-                    })
-                    @*@Html.ActionLink("Last Name", "Index", new { orderByField = "LASTNAME", orderBy = ViewBag.OrderBy })*@
-                </th>
-                <th>
-                    @Ajax.ActionLink("Phone",
-                    "Index",
-                    new { orderByField = "PHONE", orderBy = ViewBag.OrderBy },
-                    new AjaxOptions
-                    {
-                        HttpMethod = "GET",
-                        UpdateTargetId = "CustomerList",
-                        InsertionMode = InsertionMode.Replace
-                    })
-                </th>
-                <th>
-                    @Ajax.ActionLink("Email",
-                    "Index",
-                    new { orderByField = "EMAIL", orderBy = ViewBag.OrderBy },
-                    new AjaxOptions
-                    {
-                        HttpMethod = "GET",
-                        UpdateTargetId = "CustomerList",
-                        InsertionMode = InsertionMode.Replace
-                    })
-                </th>
-                <th>
-                    @Ajax.ActionLink("Street",
-                    "Index",
-                    new { orderByField = "STREET", orderBy = ViewBag.OrderBy },
-                    new AjaxOptions
-                    {
-                        HttpMethod = "GET",
-                        UpdateTargetId = "CustomerList",
-                        InsertionMode = InsertionMode.Replace
-                    })
-                </th>
-                <th>
-                    @Ajax.ActionLink("Zip",
-                    "Index",
-                    new { orderByField = "ZIP", orderBy = ViewBag.OrderBy },
-                    new AjaxOptions
-                    {
-                        HttpMethod = "GET",
-                        UpdateTargetId = "CustomerList",
-                        InsertionMode = InsertionMode.Replace
-                    })
-                </th>
-                <th>
-                    @Ajax.ActionLink("City",
-                    "Index",
-                    new { orderByField = "CITY", orderBy = ViewBag.OrderBy },
-                    new AjaxOptions
-                    {
-                        HttpMethod = "GET",
-                        UpdateTargetId = "CustomerList",
-                        InsertionMode = InsertionMode.Replace
-                    })
-                </th>
-                <th>
-                    @Ajax.ActionLink("State",
-                    "Index",
-                    new { orderByField = "STATE", orderBy = ViewBag.OrderBy },
-                    new AjaxOptions
-                    {
-                        HttpMethod = "GET",
-                        UpdateTargetId = "CustomerList",
-                        InsertionMode = InsertionMode.Replace
-                    })
-                </th>
-                <th>Action</th>
-            </tr>
-            <tbody id="CustomerList">
+    <div class="panel-body table-responsive">
+        <table class="table table-striped" id="CustomerList">
+            <thead>
+                <tr>
+                    <th>
+                        @Ajax.ActionLink("First Name",
+                        "Index",
+                        new { orderByField = "FIRSTNAME", orderBy = ViewBag.OrderBy,isPartial = true },
+                        new AjaxOptions
+                        {
+                            HttpMethod = "GET",
+                            UpdateTargetId = "CustomerList",
+                            InsertionMode = InsertionMode.Replace
+                        })
+                        @*@Html.ActionLink("First Name", "Index", new { orderByField = "FIRSTNAME", orderBy = ViewBag.OrderBy })*@
+                    </th>
+                    <th>
+                        @Ajax.ActionLink("Last Name",
+                        "Index",
+                        new { orderByField = "LASTNAME", orderBy = ViewBag.OrderBy, isPartial = true },
+                        new AjaxOptions
+                        {
+                            HttpMethod = "GET",
+                            UpdateTargetId = "CustomerList",
+                            InsertionMode = InsertionMode.Replace
+                        })
+                        @*@Html.ActionLink("Last Name", "Index", new { orderByField = "LASTNAME", orderBy = ViewBag.OrderBy })*@
+                    </th>
+                    <th>
+                        @Ajax.ActionLink("Phone",
+                        "Index",
+                        new { orderByField = "PHONE", orderBy = ViewBag.OrderBy, isPartial = true },
+                        new AjaxOptions
+                        {
+                            HttpMethod = "GET",
+                            UpdateTargetId = "CustomerList",
+                            InsertionMode = InsertionMode.Replace
+                        })
+                    </th>
+                    <th>
+                        @Ajax.ActionLink("Email",
+                        "Index",
+                        new { orderByField = "EMAIL", orderBy = ViewBag.OrderBy, isPartial = true },
+                        new AjaxOptions
+                        {
+                            HttpMethod = "GET",
+                            UpdateTargetId = "CustomerList",
+                            InsertionMode = InsertionMode.Replace
+                        })
+                    </th>
+                    <th>
+                        @Ajax.ActionLink("Street",
+                        "Index",
+                        new { orderByField = "STREET", orderBy = ViewBag.OrderBy, isPartial = true },
+                        new AjaxOptions
+                        {
+                            HttpMethod = "GET",
+                            UpdateTargetId = "CustomerList",
+                            InsertionMode = InsertionMode.Replace
+                        })
+                    </th>
+                    <th>
+                        @Ajax.ActionLink("Zip",
+                        "Index",
+                        new { orderByField = "ZIP", orderBy = ViewBag.OrderBy, isPartial = true },
+                        new AjaxOptions
+                        {
+                            HttpMethod = "GET",
+                            UpdateTargetId = "CustomerList",
+                            InsertionMode = InsertionMode.Replace
+                        })
+                    </th>
+                    <th>
+                        @Ajax.ActionLink("City",
+                        "Index",
+                        new { orderByField = "CITY", orderBy = ViewBag.OrderBy, isPartial = true },
+                        new AjaxOptions
+                        {
+                            HttpMethod = "GET",
+                            UpdateTargetId = "CustomerList",
+                            InsertionMode = InsertionMode.Replace
+                        })
+                    </th>
+                    <th>
+                        @Ajax.ActionLink("State",
+                        "Index",
+                        new { orderByField = "STATE", orderBy = ViewBag.OrderBy, isPartial = true },
+                        new AjaxOptions
+                        {
+                            HttpMethod = "GET",
+                            UpdateTargetId = "CustomerList",
+                            InsertionMode = InsertionMode.Replace
+                        })
+                    </th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
                 @foreach (var customer in customers)
                 {
                     <tr>
@@ -142,16 +145,16 @@
         @Html.ActionLink("Add", "Add", null, new { @class = "btn btn-success" })
         <br />
         <footer class="footer">
-            <a id="btnFirst" onclick="location.href = '@Url.Action("Index","Customer")'">
+            <a id="btnFirst" onclick="location.href = '@Url.Action("Index","Customer",new { pageSize = ViewBag.PageSize, pageIndex = 0})'">
                 <i class="fa fa-backward"></i>
             </a>
-            <a id="btnPrevious" href="/Customer/Index?pageSize=1&pageIndex=1">
+            <a id="btnPrevious" href="/Customer/Index?pageSize=@ViewBag.PageSize&pageIndex=@(ViewBag.PageIndex-1) ">
                 <i class="fa fa-arrow-circle-left"></i>
             </a>
-            <a id="btnNext">
+            <a id="btnNext" href="/Customer/Index?pageSize=@ViewBag.PageSize&pageIndex=@(ViewBag.PageIndex+1) ">
                 <i class="fa fa-arrow-circle-right"></i>
             </a>
-            <a id="btnLast">
+            <a id="btnLast" href="/Customer/Index?pageSize=@ViewBag.PageSize&pageIndex=@Math.Ceiling(Convert.ToDecimal(ViewBag.TotalCount)/10) ">
                 <i class="fa fa-forward"></i>
             </a>
         </footer>
@@ -159,3 +162,4 @@
 </div>
 @Scripts.Render("~/Scripts/jquery-3.4.1.js")
 @Scripts.Render("~/Scripts/jquery.unobtrusive-ajax.js")
+@Scripts.Render("~/Scripts/Customer/common.js")

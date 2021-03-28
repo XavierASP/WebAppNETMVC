@@ -4,10 +4,13 @@
 <head>
     <meta name="viewport" content="width=device-width" />
     <title>@ViewBag.Title | XavierCorp</title>
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@300;400;700&display=swap" rel="stylesheet">
     <link rel="icon" href="~/Content/Images/xavier_1.png" type="image/x-icon" />
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
     @Styles.Render("~/Content/font-awesome.css")
+    @Styles.Render("~/Content/Globals/CSS/_globals.css")
     @Styles.Render("~/Content/_MainLayout/CSS/_header.css")
     @if (IsSectionDefined("CustomerStyles"))
     {
@@ -34,12 +37,31 @@
                 <span></span>
                 <span></span>
             </a>
+            <a class="header__avatar" id="avatar">
+                <img src="~/Content/Images/avatar_01.svg" alt="avatar" />
+
+            </a>
+            <div class="hide_avatar header__avatar__items " id="avatarItems">
+                @Html.ActionLink("Profile", "Profile", "Customer", new { @class= "header__avatar__item" })
+                @Html.ActionLink("Log Out", "LogOut", "Customer", new { @class = "header__avatar__item" })
+                @*<a class="header__avatar__item">Profile</a>
+                <a class="header__avatar__item">Log Out</a>*@
+            </div>
+
         </div>
         <div>
             @RenderBody()
+            <hr />
+            <div class="row">
+                <footer>
+                    <p>&copy; @DateTime.Now.Year - Aman Singh Parihar</p>
+                </footer>
+            </div>
         </div>
     </div>
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
+    @*@Scripts.Render("~/Scripts/Customer/elements.js")*@
+    @Scripts.Render("~/Scripts/Customer/avatar.js")
 </body>
 </html>

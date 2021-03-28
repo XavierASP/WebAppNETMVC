@@ -1,0 +1,124 @@
+﻿@using WebAppNETMVC.DTO;
+@{
+    var lsCustomers = ViewData["Customers"] as CustomerBOResponseWithPaging;
+    var customers = lsCustomers.Customers;
+    var user = ViewData["User"] as LoginBOResponse;
+}
+
+    <thead>
+        <tr>
+            <th>
+                @Ajax.ActionLink("First Name",
+                "Index",
+                new { orderByField = "FIRSTNAME", orderBy = ViewBag.OrderBy, isPartial = true },
+                new AjaxOptions
+                {
+                    HttpMethod = "GET",
+                    UpdateTargetId = "CustomerList",
+                    InsertionMode = InsertionMode.Replace
+                })
+                @*@Html.ActionLink("First Name", "Index", new { orderByField = "FIRSTNAME", orderBy = ViewBag.OrderBy })*@
+            </th>
+            <th>
+                @Ajax.ActionLink("Last Name",
+                "Index",
+                new { orderByField = "LASTNAME", orderBy = ViewBag.OrderBy, isPartial = true },
+                new AjaxOptions
+                {
+                    HttpMethod = "GET",
+                    UpdateTargetId = "CustomerList",
+                    InsertionMode = InsertionMode.Replace
+                })
+                @*@Html.ActionLink("Last Name", "Index", new { orderByField = "LASTNAME", orderBy = ViewBag.OrderBy })*@
+            </th>
+            <th>
+                @Ajax.ActionLink("Phone",
+                "Index",
+                new { orderByField = "PHONE", orderBy = ViewBag.OrderBy, isPartial = true },
+                new AjaxOptions
+                {
+                    HttpMethod = "GET",
+                    UpdateTargetId = "CustomerList",
+                    InsertionMode = InsertionMode.Replace
+                })
+            </th>
+            <th>
+                @Ajax.ActionLink("Email",
+                "Index",
+                new { orderByField = "EMAIL", orderBy = ViewBag.OrderBy, isPartial = true },
+                new AjaxOptions
+                {
+                    HttpMethod = "GET",
+                    UpdateTargetId = "CustomerList",
+                    InsertionMode = InsertionMode.Replace
+                })
+            </th>
+            <th>
+                @Ajax.ActionLink("Street",
+                "Index",
+                new { orderByField = "STREET", orderBy = ViewBag.OrderBy, isPartial = true },
+                new AjaxOptions
+                {
+                    HttpMethod = "GET",
+                    UpdateTargetId = "CustomerList",
+                    InsertionMode = InsertionMode.Replace
+                })
+            </th>
+            <th>
+                @Ajax.ActionLink("Zip",
+                "Index",
+                new { orderByField = "ZIP", orderBy = ViewBag.OrderBy, isPartial = true },
+                new AjaxOptions
+                {
+                    HttpMethod = "GET",
+                    UpdateTargetId = "CustomerList",
+                    InsertionMode = InsertionMode.Replace
+                })
+            </th>
+            <th>
+                @Ajax.ActionLink("City",
+                "Index",
+                new { orderByField = "CITY", orderBy = ViewBag.OrderBy, isPartial = true },
+                new AjaxOptions
+                {
+                    HttpMethod = "GET",
+                    UpdateTargetId = "CustomerList",
+                    InsertionMode = InsertionMode.Replace
+                })
+            </th>
+            <th>
+                @Ajax.ActionLink("State",
+                "Index",
+                new { orderByField = "STATE", orderBy = ViewBag.OrderBy, isPartial = true },
+                new AjaxOptions
+                {
+                    HttpMethod = "GET",
+                    UpdateTargetId = "CustomerList",
+                    InsertionMode = InsertionMode.Replace
+                })
+            </th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var customer in customers)
+        {
+            <tr>
+                <td>@customer.first_name</td>
+                <td>@customer.last_name</td>
+                <td>@customer.phone</td>
+                <td>@customer.email</td>
+                <td>@customer.street</td>
+                <td>@customer.zip_code</td>
+                <td>@customer.city</td>
+                <td>@customer.state</td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = customer.customer_id }, new { @class = "btn btn-primary" })
+                    @Html.ActionLink("Delete", "Delete", new { id = customer.customer_id }, new { @class = "btn btn-danger" })
+                </td>
+            </tr>
+        }
+    </tbody>
+
+
+

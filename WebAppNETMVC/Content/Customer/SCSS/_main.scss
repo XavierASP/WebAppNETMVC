@@ -1,0 +1,21 @@
+﻿@import "../../Globals/SCSS/_globals.scss";
+
+@media (max-width:600px)
+{
+    thead {
+        display: none;
+    }
+    tr{
+        display:flex;
+        flex-direction:column;
+    }
+    td {
+        display: flex;
+        justify-content: space-between;
+
+        &::before {
+            content: 'First Name';
+        }
+    }
+
+}

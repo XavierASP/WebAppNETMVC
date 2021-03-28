@@ -51,6 +51,7 @@ namespace WebAppNETMVC
 
             // TODO: Register your type's mappings here.
             container.RegisterType<ILoginRepository, LoginRepository>();
+            container.RegisterType<ILoginService, LoginService>();
             container.RegisterType(typeof(IRepository<>), typeof(Repository<>));
             container.RegisterType<ICustomerRepository, CustomerRepository>();
             container.RegisterType<ICustomerService, CustomerService>();

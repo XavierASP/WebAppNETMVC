@@ -12,11 +12,16 @@ namespace WebAppNETMVC.Repository
             this._bikeStoresContext = bikeStoresContext;
         }
 
-        public uspValidateUser_Result ValidateUser(LoginBORequest loginRequest)
+        public uspValidateUser_Result ValidateUser(uspValidateUser_Result loginRequest)
         {
-            var response = _bikeStoresContext.uspValidateUser(loginRequest.Username, loginRequest.Password);
+            var response = _bikeStoresContext.uspValidateUser(loginRequest.username, loginRequest.password);
             var result = response.FirstOrDefault();
             return result;
+        }
+
+        public uspValidateUser_Result SignUp(uspValidateUser_Result uspValidateUser_Result)
+        {
+           return Add(uspValidateUser_Result);
         }
     }
 }

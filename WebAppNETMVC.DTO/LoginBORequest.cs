@@ -10,8 +10,8 @@ namespace WebAppNETMVC.DTO
     public class LoginBORequest
     {
         [Required(ErrorMessage = "Please Enter Username")]
-        public string Username { get; set; }
+        public string username { get; set; }
         [Required(ErrorMessage = "Please Enter Password")]
-        public string Password { get; set; }
+        public string password { get; set; }
     }
 }

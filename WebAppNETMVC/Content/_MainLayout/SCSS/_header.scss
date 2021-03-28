@@ -1,10 +1,4 @@
-﻿body {
-}
-a, a:hover {
-    text-decoration: none;
-    color: gray;
-    cursor: pointer;
-}
+﻿@import "../../Globals/SCSS/_globals.scss";
 @media (max-width:768px){
     //for mobile phones
     .hide_for_mobile {
@@ -12,19 +6,52 @@ a, a:hover {
     }
 }
 @media (min-width:768px){
-    .hide_for_dektop {
-        display:none;
+    .hide_for_desktop {
+        display:none ;
     }
 }
-
+.hide_avatar{
+    display:none !important;
+}
 .header {
+    position: relative;
     padding: 5px;
     display: flex;
     justify-content: space-between;
-    &__logo > img{
-        height:50px;
-        width:50px;
+
+    &__logo > img {
+        height: 50px;
+        width: 40px;
     }
+
+    &__avatar {
+        > img {
+            height: 50px;
+            width: 50px;
+        }
+    }
+
+    &__avatar__items {
+        top: 6.3rem;
+        right: 1.3rem;
+        display: flex;
+        flex-direction: column;
+        position: absolute;
+        background-color: #fff;
+        border-radius: 4px;
+
+        > a {
+            &:hover {
+                background-color: white;
+            }
+        }
+    }
+
+    &__avatar__item {
+        padding: 5px 15px;
+        /*margin-bottom: 5px;*/
+    }
+
     &__link {
         margin: 5px 15px;
     }

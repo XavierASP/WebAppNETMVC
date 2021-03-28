@@ -3,29 +3,41 @@ using System.Web;
 using System.Web.Mvc;
 using System.Web.Security;
 using WebAppNETMVC.DTO;
+using WebAppNETMVC.Filters;
+using WebAppNETMVC.IService;
 using WebAppNETMVC.Repository;
 
 namespace WebAppNETMVC.Controllers
 {
-
+    [HandleError]
     public class LoginController : Controller
     {
-        private readonly ILoginRepository _loginRepository;
+        //private readonly ILoginRepository _loginRepository;
+        private readonly ILoginService _loginService;
         private readonly IMapper _mapper;
         // private readonly BikeStoresContext _bikeStoresContext;
 
-        public LoginController(ILoginRepository loginRepository, IMapper mapper)//(BikeStoresContext bikeStoresContext, IMapper mapper)//(ILoginRepository loginRepository,IMapper mapper)
+        public LoginController(ILoginRepository loginRepository, IMapper mapper, ILoginService loginService)//(BikeStoresContext bikeStoresContext, IMapper mapper)//(ILoginRepository loginRepository,IMapper mapper)
         {
-            _loginRepository = loginRepository;
+            // _loginRepository = loginRepository;
+            _loginService = loginService;
             _mapper = mapper;
             //_bikeStoresContext = bikeStoresContext;
         }
+        public ActionResult SignUp()
+        {
+            return View();
+        }
+        [HttpPost]
         public ActionResult SignUp(UserBORequest userBORequest)
         {
             if (ModelState.IsValid)
             {
-                
-                return RedirectToAction("Index", "Login");
+                UserBOResponse userBOResponse = _loginService.SignUp(userBORequest);
+                if (userBOResponse != null)
+                    return RedirectToAction("Index", "Login");
+                else
+                    return View();
             }
             else
             {
@@ -36,28 +48,32 @@ namespace WebAppNETMVC.Controllers
         public ActionResult Index()
         {
             return View();
-        }        
+        }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="loginBORequest"></param>
+        /// <returns></returns>
         [HttpPost]
         public ActionResult Index(LoginBORequest loginBORequest)
         {
             if (ModelState.IsValid)
             {
                 //var loginRequest = _mapper.Map<LoginRequest>(loginBORequest);
-
-                var result = _loginRepository.ValidateUser(loginBORequest);
+                var result = _loginService.ValidateUser(loginBORequest);
+                //var result = _loginRepository.ValidateUser(loginBORequest);
                 var response = _mapper.Map<LoginBOResponse>(result);
                 if (response.status_code == 1)
                 {
                     TempData["user"] = response;
                     //Inbuild forms authentication cookie which will be validated by [Authorize]
                     FormsAuthentication.SetAuthCookie(response.username, false);
-                    
-                    //Manually created cookie,
-                    HttpCookie httpCookie = new HttpCookie("cookie");
-                    httpCookie.Values.Add("username", response.username);
-                    httpCookie.Values.Add("id", response.user_id.ToString());
 
-                    Response.Cookies.Add(httpCookie);
+                    //! Manually created cookie,
+                    //x HttpCookie httpCookie = new HttpCookie("cookie");
+                    //x httpCookie.Values.Add("username", response.username);
+                    //x httpCookie.Values.Add("id", response.user_id.ToString());
+                    //x Response.Cookies.Add(httpCookie);
 
                     //Session["user"] = response.user_id;
                     return RedirectToAction("Index", "Customer");
@@ -75,14 +91,14 @@ namespace WebAppNETMVC.Controllers
                     return View();
                 }
             }
-            else 
+            else
             {
-               
+
                 return View();
             }
 
 
-            
+
         }
     }
 }

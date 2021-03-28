@@ -3,6 +3,7 @@
 @{
     ViewBag.Title = "Login";
 }
+@Styles.Render("~/Content/Login/CSS/login.css")
 <div class="row">
     <div class="col-md-2"></div>
     <div class="col-md-8">
@@ -11,7 +12,10 @@
                 <div class="panel-title"><h2>Login</h2></div>
             </div>
             <div class="panel-body">
-                @using (Html.BeginForm())
+                @using (Ajax.BeginForm("Index", "Login", new AjaxOptions
+                {
+                    HttpMethod = "POST"
+                }))
                 {
                     <hr />
                     if (ViewBag.error != null)
@@ -20,25 +24,34 @@
                             @ViewBag.error
                         </div>
                     }
-                    <div class="form-group">
+                    @*<div class="form-outline">
 
-                        @Html.TextBoxFor(model => model.Username, new { @class = "form-control", @placeholder = "Username" })
-
-                        @Html.ValidationMessageFor(model => model.Username, "", new { @class = "text-danger" })
+                        @Html.TextBoxFor(model => model.username, new { @class = "form-control txtBox", @id = "txtUsername", required = string.Empty })
+                        @Html.LabelFor(model => model.username, new { @class = "form-label", @for = "txtUsername" })
+                        <div class="invalid-feedback">Looks good!</div>
 
                     </div>
+                    <div class="form-outline">
+
+                        @Html.PasswordFor(model => model.password, new { @class = "form-control txtBox", @id = "txtPassword", required = string.Empty })
+                        @Html.LabelFor(model => model.password, new { @class = "form-label", @for = "txtPassword" })
+                        <div class="invalid-feedback">Looks good!</div>
+                    </div>*@
+                    @*! Commenting the code as it was older, so might need it in future to understand*@
                     <div class="form-group">
-
-                        @Html.TextBoxFor(model => model.Password, new { @class = "form-control", @placeholder = "password" })
-
-                        @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
+                        @Html.TextBoxFor(model => model.username, new { @class = "form-control txtBox", @placeholder = "Username" })
+                        @Html.ValidationMessageFor(model => model.username, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="form-group">
+                        @Html.PasswordFor(model => model.password, new { @class = "form-control", @placeholder = "Password" })
+                        @Html.ValidationMessageFor(model => model.password, "", new { @class = "text-danger" })
                     </div>
                     <div class="form-group">
                         <input type="submit" class="btn btn-primary" value="Login" />
                     </div>
 
                 }
-                @Html.ActionLink("Not a user? Sign up","SignUp")
+                @Html.ActionLink("Not a user? Sign up", "SignUp")
             </div>
         </div>
     </div>

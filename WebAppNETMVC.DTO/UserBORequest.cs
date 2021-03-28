@@ -10,16 +10,16 @@ namespace WebAppNETMVC.DTO
     public class UserBORequest
     {
         [Required(ErrorMessage = "Please Enter Username")]
-        public string Username { get; set; }
+        public string username { get; set; }
 
         [Required(ErrorMessage = "Please Enter Password")]
-        public string Password { get; set; }
+        public string password { get; set; }
 
         [Required(ErrorMessage = "Please Enter Confirm Password")]
-        public string ConfirmPassword { get; set; }
-        public string LoginIPAddress { get; set; }
-        public string TimeZone { get; set; }
-        public Nullable<System.DateTime> LastAccessedDate { get; set; }
+        public string confirm_password { get; set; }
+        public string login_ipaddress { get; set; }
+        public string time_zone { get; set; }
+        public Nullable<System.DateTime> last_accessed_date { get; set; }
 
     }
 }

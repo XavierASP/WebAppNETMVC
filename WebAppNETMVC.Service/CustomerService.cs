@@ -94,7 +94,14 @@ namespace WebAppNETMVC.Service
                     customers = customers.OrderBy(customer => customer.first_name);
                     break;
             }
-
+            if (pageIndex < 0) 
+            {
+                pageIndex = 0;
+            }
+            if (pageIndex >= Math.Ceiling(Convert.ToDecimal(customers.Count()) / pageSize) )
+            {
+                pageIndex = Convert.ToInt32(Math.Ceiling(Convert.ToDecimal(customers.Count()) / pageSize))-1;
+            }
 
             var pagingCustomers = (from customer in customers select customer).
                 Skip(pageIndex * pageSize).
